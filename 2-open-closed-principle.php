@@ -1,5 +1,7 @@
 <?php
 
+// Code is open for extension but closed for modification
+//
 // Open Closed Principle Violation
 class Programmer
 {

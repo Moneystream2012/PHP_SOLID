@@ -1,95 +1,55 @@
 <?php
 
+// Don’t make FAT Interfaces.
+// i.e. Classes don’t have to override extra agreements that are
+// not needed for that class simply because it is there in interface
+//
 // Interface Segregation Principle Violation
-interface Workable
+interface IItem
 {
-    public function canCode();
-    public function code();
-    public function test();
-}
+    public function applyDiscount($discount);
+    public function applyPromocode($promocode);
 
-class Programmer implements Workable
-{
-    public function canCode()
-    {
-        return true;
-    }
+    public function setColor($color);
+    public function setSize($size);
 
-    public function code()
-    {
-        return 'coding';
-    }
-
-    public function test()
-    {
-        return 'testing in localhost';
-    }
-}
-
-class Tester implements Workable
-{
-    public function canCode()
-    {
-        return false;
-    }
-
-    public function code()
-    {
-         throw new Exception('Opps! I can not code');
-    }
-
-    public function test()
-    {
-        return 'testing in test server';
-    }
-}
-
-class ProjectManagement
-{
-    public function processCode(Workable $member)
-    {
-        if ($member->canCode()) {
-            $member->code();
-        }
-    }
+    public function setCondition($condition);
+    public function setPrice($price);
 }
 
 // Refactored
-interface Codeable
+interface IItem
 {
-    public function code();
+    public function setCondition($condition);
+    public function setPrice($price);
 }
 
-interface Testable
+interface IClothes
 {
-    public function test();
+    public function setColor($color);
+    public function setSize($size);
+    public function setMaterial($material);
 }
 
-class Programmer implements Codeable, Testable
+interface IDiscountable
 {
-    public function code()
-    {
-        return 'coding';
-    }
-
-    public function test()
-    {
-        return 'testing in localhost';
-    }
+    public function applyDiscount($discount);
+    public function applyPromocode($promocode);
 }
 
-class Tester implements Testable
+class Book implements IItem, IDiscountable
 {
-    public function test()
-    {
-        return 'testing in test server';
-    }
+    public function setCondition($condition){/*...*/}
+    public function setPrice($price){/*...*/}
+    public function applyDiscount($discount){/*...*/}
+    public function applyPromocode($promocode){/*...*/}
 }
 
-class ProjectManagement
+class KidsClothes implements IItem, IClothes
 {
-    public function processCode(Codeable $member)
-    {
-        $member->code();
-    }
+    public function setCondition($condition){/*...*/}
+    public function setPrice($price){/*...*/}
+    public function setColor($color){/*...*/}
+    public function setSize($size){/*...*/}
+    public function setMaterial($material){/*...*/}
 }

@@ -1,5 +1,8 @@
 <?php
 
+// Class should be responsible for a single task
+// (i.e. A class should have one, and only one, reason to change.)
+//
 // Single Responsibility Principle Violation
 class Order
 {

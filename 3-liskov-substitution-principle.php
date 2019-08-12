@@ -1,5 +1,7 @@
 <?php
 
+// Derived class can be substituted at places where base class is used
+//
 // Liskov Substitution Principle Violation
 // The Rectangle - Square problem
 class Rectangle
@@ -54,7 +56,8 @@ calculateRectangleSquare(new Rectangle, 4, 5); // 20
 calculateRectangleSquare(new Square, 4, 5); // 25 ???
 
 
-/// Refactor class Square to solve that problem - better will avoid class extending
+// Refactor class Square to solve that problem
+// i.e. better will avoid class extending
 class Square
 {
     protected $size;

@@ -1,4 +1,9 @@
 <?php
+
+// Depend on abstractions, not on concretions.
+// Not only high level Classes but low level classes
+// also depend on the abstractions in order to decouple the code.
+//
 // Dependency Inversion Principle Violation
 class Customer
 {
@@ -33,11 +38,9 @@ class OrderProcessor
     public function checkout($order){/*...*/}
 }
 
+
 // Refactored, can be done throw
-// setter(s),
-// method parameters
-// DI
-//
+// setter(s), method parameters, DI
 class Customer
 {
     private $currentOrder = null;
